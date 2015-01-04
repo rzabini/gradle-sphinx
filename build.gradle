@@ -1,0 +1,51 @@
+buildscript{
+	repositories{
+	mavenLocal()
+	mavenCentral()
+	
+	}
+	dependencies{
+		classpath 'com.github.rzabini:gradle-jython:+'
+	}
+}
+
+apply plugin:'com.github.rzabini.gradle-jython'
+apply plugin:'groovy'
+apply plugin:'maven-publish'
+
+group 'com.github.rzabini'
+
+repositories{
+	mavenLocal()
+}
+
+dependencies{
+	compile localGroovy()
+	compile gradleApi()
+	compile 'com.github.rzabini:gradle-jython:+'
+}
+
+publishing {
+	publications {
+		plugin(MavenPublication) {
+			from components.java
+		}
+	}
+}
+
+jython {
+    pypackage 'Sphinx:1.2.3','Jinja2:2.7.3','MarkupSafe:0.23','Pygments:2.0.1','docutils:0.12'
+    
+}
+
+jar {
+	destinationDir file('build/jython')
+	duplicatesStrategy = 'exclude' 
+	from 'src/main/jython'
+	from 'build/jython/Sphinx-1.2.3'
+	from 'build/jython/Jinja2-2.7.3'
+	from 'build/jython/MarkupSafe-0.23'
+	from 'build/jython/Pygments-2.0.1'
+	from 'build/jython/docutils-0.12'
+}
+
