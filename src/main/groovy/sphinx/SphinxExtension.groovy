@@ -5,6 +5,7 @@ class SphinxExtension {
 	def sourceDir 
 	def outputDir 
 	def release
+	def title
 	def author='nobody'
 	
 	void setSourceDir(sourceDir){
@@ -21,6 +22,10 @@ class SphinxExtension {
 	
 	void setRelease(release){
 		this.release=release
+	}
+	
+	void setTitle(title){
+		this.title=title
 	}
 
 

@@ -19,7 +19,7 @@ cmdline.main(sys.argv)
 	@TaskAction
 	void exec(){
 
-		args '-c', buildCommand, "-Drelease=$project.sphinx.release", project.sphinx.sourceDir.absolutePath, project.sphinx.outputDir.absolutePath
+		args '-c', buildCommand, "-Drelease=$project.sphinx.release", "-Dproject=$project.sphinx.title", project.sphinx.sourceDir.absolutePath, project.sphinx.outputDir.absolutePath
 		super.exec()
 	}
 
