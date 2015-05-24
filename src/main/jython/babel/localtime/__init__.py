@@ -17,10 +17,10 @@ from datetime import timedelta, datetime
 from datetime import tzinfo
 from threading import RLock
 
-if sys.platform == 'win32':
-    from babel.localtime._win32 import _get_localzone
-else:
+if sys.platform == 'unix':
     from babel.localtime._unix import _get_localzone
+else:
+    from babel.localtime._win32 import _get_localzone
 
 
 _cached_tz = None
