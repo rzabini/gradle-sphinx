@@ -5,7 +5,7 @@ buildscript{
 	
 	}
 	dependencies{
-		classpath 'com.github.rzabini:gradle-jython:+'
+		classpath 'com.github.rzabini:gradle-jython:1.0.3-SNAPSHOT'
 	}
 }
 
@@ -22,7 +22,7 @@ repositories{
 dependencies{
 	compile localGroovy()
 	compile gradleApi()
-	compile 'com.github.rzabini:gradle-jython:+'
+	compile 'com.github.rzabini:gradle-jython:1.0.3-SNAPSHOT'
 }
 
 publishing {
@@ -33,8 +33,11 @@ publishing {
 	}
 }
 
+
+def packages=['Sphinx:1.3.1','Jinja2:2.7.3','MarkupSafe:0.23','Pygments:2.0.1','docutils:0.12','six:1.9.0','Babel:1.3','pytz:2015.4','alabaster:0.7.4','sphinx_rtd_theme:0.1.8']
+
 jython {
-    pypackage 'Sphinx:1.2.3','Jinja2:2.7.3','MarkupSafe:0.23','Pygments:2.0.1','docutils:0.12'
+    pypackage (*packages)
     
 }
 
@@ -42,10 +45,15 @@ jar {
 	destinationDir file('build/jython')
 	duplicatesStrategy = 'exclude' 
 	from 'src/main/jython'
-	from 'build/jython/Sphinx-1.2.3'
+	from 'build/jython/Sphinx-1.3.1'
 	from 'build/jython/Jinja2-2.7.3'
 	from 'build/jython/MarkupSafe-0.23'
 	from 'build/jython/Pygments-2.0.1'
 	from 'build/jython/docutils-0.12'
+	from 'build/jython/Babel-1.3'
+	from 'build/jython/pytz-2015.4'
+	from 'build/jython/alabaster-0.7.4'
+	from 'build/jython/sphinx_rtd_theme-0.1.8'
+	from 'build/jython/six-1.9.0'
 }
 
