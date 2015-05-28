@@ -266,6 +266,8 @@ def get_module_source(modname):
 
 
 def get_full_modname(modname, attribute):
+    if(modname is None):
+        return None
     __import__(modname)
     module = sys.modules[modname]
 
