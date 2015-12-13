@@ -1,13 +1,17 @@
 package sphinx
 
 import jython.JythonTask
-
+import org.gradle.api.tasks.JavaExec
 import org.gradle.api.tasks.TaskAction
 
-public class SphinxTask extends JythonTask{
+public class SphinxTask extends JavaExec {
 
-	
-	
+	SphinxTask(){
+		main 'org.python.util.jython'
+		classpath project.configurations.jython.asPath
+		dependsOn 'jythonClasses'
+	}
+
 	static final String buildCommand='''
 import sys
 from sphinx import cmdline
@@ -20,9 +24,8 @@ cmdline.main(sys.argv)
 	void exec(){
 
 		args '-c', buildCommand, "-Drelease=$project.sphinx.release", "-Dproject=$project.sphinx.title", project.sphinx.sourceDir.absolutePath, project.sphinx.outputDir.absolutePath
-		super.exec()
-	}
+        systemProperties(['python.path': project.configurations.pythonpath.asPath])
 
-	
-	
+        super.exec()
+	}
 }

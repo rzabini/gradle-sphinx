@@ -28,9 +28,9 @@ generate(d)
 }
 
 	void apply(Project project){
+
 		project.apply plugin:'com.github.rzabini.gradle-jython'
-		
-		
+
 		project.dependencies{
 			pythonpath project.files(this.class.getProtectionDomain().getCodeSource().location.path)
 		}
@@ -50,17 +50,17 @@ generate(d)
 			script(quickstart(project))
 		
 		
-			ant.unzip(
+			/*ant.unzip(
 				src: this.class.getProtectionDomain().getCodeSource().location.path,
 				dest:"${project.sphinx.sourceDir}/_templates")
 				{
 					patternset {
-						include(name: "sphinx/themes/default/**/*")
-						include(name: "sphinx/themes/basic/**/*")
+						include(name: "sphinx/themes/default/** /*")
+						include(name: "sphinx/themes/basic/** /*")
 					}
 					cutdirsmapper(dirs:2)
 				}
-			
+			*/
 		}
 		
 		
